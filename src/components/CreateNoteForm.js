@@ -14,6 +14,10 @@ let CreateNoteForm = props => {
         <Field name="email" component="input" type="email" />
       </div>
       <div>
+        <label htmlFor="title">Title</label>
+        <Field name="title" component="input" type="text" />
+      </div>
+      <div>
         <label htmlFor="note">Text:</label>
         <Field name="note" component="textarea" />
       </div>

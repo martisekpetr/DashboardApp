@@ -5,7 +5,7 @@ export const getNote = (id) => fetch(`http://localhost:3002/note/${id}/`)
   .then(response => response.json());
 
 export const saveNote = (note) => fetch(`http://localhost:3002/create/`, {
-  method: 'put',
+  method: 'post',
   body: JSON.stringify(note),
   headers: {
     'Accept': 'application/json',

@@ -1,7 +1,9 @@
 import { put, call, takeEvery } from 'redux-saga/effects'
 import * as actionTypes from '../constants/actionTypes'
 import { normalize } from 'normalizr';
+import { push } from 'react-router-redux'
 
+import { getUsers } from '../selectors/dashboardSelector'
 import * as API from '../effects/api'
 
 import { note } from '../constants/schema'
@@ -23,17 +25,12 @@ export function* loadNote(action) {
 
 export function* createNote(action){
   try{
-    console.log(action.payload);
-    let data = new FormData();
-    data.append( "json", JSON.stringify( action.payload ) );
-    const res = yield call(API.saveNote, action.payload);
-    console.log(JSON.stringify(res));
-
+    yield call(API.saveNote, action.payload);
+    yield put(push('/'));
   }
   catch (err){
     console.error(err);
   }
-
 }
 
 export function* noteSaga(){

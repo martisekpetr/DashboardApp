@@ -1,6 +1,8 @@
 import { schema } from 'normalizr';
 
-const user = new schema.Entity('users');
+const user = new schema.Entity('users', {}, {
+  idAttribute: 'email',
+});
 
 export const note = new schema.Entity('notes', {
   author: user,

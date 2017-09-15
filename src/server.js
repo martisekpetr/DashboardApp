@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-
+const bodyParser = require('body-parser');
 
 
 const PORT = 3002;
@@ -48,6 +48,14 @@ const dashboard = {
 const server = express();
 server.use(cors());
 
+server.counter = 4;
+
+// parse application/x-www-form-urlencoded
+server.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+server.use(bodyParser.json());
+
 
 
 const getArticle = (id) => {
@@ -69,8 +77,13 @@ server.get('/note/:id/', (req, res) => {
 });
 
 
-server.put("/create/", function(request, response) {
-  console.log(request.body); //This prints the JSON document received (if it is a JSON document)
+server.post("/create/", function(request, response) {
+
+  console.log(request.body);
+  const note = request.body;
+  note.id = server.counter++;
+  dashboard.notes.push(note);
+  console.log(JSON.stringify(dashboard, undefined, 2));
 });
 
 server.listen(PORT, () => console.log(`Server is running at http://localhost:${PORT}...`));

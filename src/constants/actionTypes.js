@@ -4,3 +4,4 @@ export const DASHBOARD_LOADED = 'DASHBOARD_LOADED';
 export const LOAD_NOTE = 'LOAD_NOTE';
 export const NOTE_LOADED = 'NOTE_LOADED';
 export const CREATE_NOTE = 'CREATE_NOTE';
+export const NOTE_SAVED = 'NOTE_SAVED';
