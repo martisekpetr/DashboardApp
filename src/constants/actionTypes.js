@@ -1,5 +1,6 @@
 export const LOAD_DASHBOARD = 'LOAD_DASHBOARD';
 export const ENTITIES_CHANGED = 'ENTITIES_CHANGED';
 export const DASHBOARD_LOADED = 'DASHBOARD_LOADED';
-export const LOAD_NOTE = 'NOTE_LOADED';
+export const LOAD_NOTE = 'LOAD_NOTE';
 export const NOTE_LOADED = 'NOTE_LOADED';
+export const CREATE_NOTE = 'CREATE_NOTE';

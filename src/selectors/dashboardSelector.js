@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const getDashboardId = state => state.dashboard.id;
-// const getNoteId = state => state.dashboard.noteId;
+const getDashboardId = state => state.dashboard.dashboardId;
+const getNoteId = state => state.dashboard.noteId;
 
 const getEntities = state => state.entities;
 
@@ -25,4 +25,13 @@ export const getDashboard = createSelector(
     }
 );
 
-// export const getNote = createSelector(getNoteId, getNotes, (id, notes) => notes && notes[id]);
+export const getNote = createSelector(
+  getNoteId,
+  getNotes,
+  getUsers,
+  (id, notes, users) =>
+    notes && users && notes[id] && {
+    ...notes[id],
+    author: users[notes[id].author]
+  }
+);

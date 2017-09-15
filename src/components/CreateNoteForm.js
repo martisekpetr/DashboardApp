@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-let ContactForm = props => {
+let CreateNoteForm = props => {
   const { handleSubmit } = props;
   return (
     <form onSubmit={ handleSubmit }>
@@ -15,15 +15,15 @@ let ContactForm = props => {
       </div>
       <div>
         <label htmlFor="note">Text:</label>
-        <Field name="note" component="input" type="text" />
+        <Field name="note" component="textarea" />
       </div>
       <button type="submit">Submit</button>
     </form>
   )
 };
 
-ContactForm = reduxForm({
+CreateNoteForm = reduxForm({
   form: 'create_note'
-})(ContactForm);
+})(CreateNoteForm);
 
-export default ContactForm;
+export default CreateNoteForm;

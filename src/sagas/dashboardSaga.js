@@ -1,21 +1,10 @@
-import { select, put, call, takeEvery } from 'redux-saga/effects'
+import { put, call, takeEvery } from 'redux-saga/effects'
 import * as actionTypes from '../constants/actionTypes'
-import { normalize, schema } from 'normalizr';
+import { normalize } from 'normalizr';
 
 import * as API from '../effects/api'
 
-// Define a users schema
-const user = new schema.Entity('users');
-
-// Define your article
-const note = new schema.Entity('notes', {
-  author: user,
-});
-
-const dashboard = new schema.Entity('dashboards',{
-  notes : [ note ],
-});
-
+import { dashboard } from '../constants/schema'
 
 
 export function* loadDashboard(){
@@ -27,13 +16,11 @@ export function* loadDashboard(){
     console.log(`Result: ${JSON.stringify(normalizedData)}`);
 
     yield put({type: actionTypes.DASHBOARD_LOADED, payload: normalizedData});
-
     yield put({type: actionTypes.ENTITIES_CHANGED, payload: normalizedData.entities})
   }
   catch (err){
     console.error(err);
   }
-  // yield put({type: actionTypes.DASHBOARD_LOADED, payload: 3});
 }
 
 export function* dashboardSaga(){

@@ -3,6 +3,7 @@ import { Route, BrowserRouter } from 'react-router-dom'
 
 import List from './List'
 import Note from './Note'
+import CreateNote from './CreateNote'
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <div>
           <Route exact path="/" component={List}/>
           <Route path="/note/:id" component={Note}/>
+          <Route path="/create/" component={CreateNote}/>
         </div>
       </BrowserRouter>
     );
