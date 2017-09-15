@@ -77,13 +77,14 @@ server.get('/note/:id/', (req, res) => {
 });
 
 
-server.post("/create/", function(request, response) {
+server.post("/create/", function(req, res) {
 
-  console.log(request.body);
-  const note = request.body;
+  console.log(req.body);
+  const note = req.body;
   note.id = server.counter++;
   dashboard.notes.push(note);
   console.log(JSON.stringify(dashboard, undefined, 2));
+  res.status(200).json({status: "ok"});
 });
 
 server.listen(PORT, () => console.log(`Server is running at http://localhost:${PORT}...`));

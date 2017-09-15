@@ -29,7 +29,7 @@ const mapDispatchToProps = dispatch => ({
     type: ActionTypes.CREATE_NOTE,
     payload: {
       title : values.title || '(no title)',
-      text : values.text || '',
+      text : values.note || '',
       author : {
         name: values.name || 'Anonymous',
         email: values.email || '',
