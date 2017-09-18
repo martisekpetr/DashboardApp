@@ -11,11 +11,11 @@ export function* loadDashboard(){
   try{
     const res = yield call(API.getDashboard);
 
-    const normalizedData = normalize(res, dashboard);
+    const normalizedData = yield call(normalize, res, dashboard);
 
     console.log(`Result: ${JSON.stringify(normalizedData)}`);
 
-    yield put({type: actionTypes.DASHBOARD_LOADED, payload: normalizedData});
+    yield put({type: actionTypes.DASHBOARD_LOADED, payload: normalizedData.result});
     yield put({type: actionTypes.ENTITIES_CHANGED, payload: normalizedData.entities})
   }
   catch (err){
@@ -23,6 +23,6 @@ export function* loadDashboard(){
   }
 }
 
-export function* dashboardSaga(){
+export default function* dashboardSaga(){
   yield takeEvery(actionTypes.LOAD_DASHBOARD, loadDashboard)
 }

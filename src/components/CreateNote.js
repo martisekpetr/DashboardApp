@@ -27,14 +27,7 @@ class CreateNote extends React.Component {
 const mapDispatchToProps = dispatch => ({
   createNote: (values) => dispatch({
     type: ActionTypes.CREATE_NOTE,
-    payload: {
-      title : values.title || '(no title)',
-      text : values.note || '',
-      author : {
-        name: values.name || 'Anonymous',
-        email: values.email || '',
-      }
-    }}),
+    payload: values}),
 });
 
 export default connect(undefined, mapDispatchToProps)(CreateNote);

@@ -12,10 +12,10 @@ export function* loadNote(action) {
   try{
     const res = yield call(API.getNote, action.payload);
     console.log(JSON.stringify(res));
-    const { entities } = normalize(res, note);
+    const { result: noteId, entities } = yield call(normalize, res, note);
 
-    yield put({type: actionTypes.NOTE_LOADED, payload: action.payload});
     yield put({type: actionTypes.ENTITIES_CHANGED, payload: entities});
+    yield put({type: actionTypes.NOTE_LOADED, payload: noteId});
   }
   catch (err){
     console.error(err);
@@ -24,8 +24,17 @@ export function* loadNote(action) {
 
 
 export function* createNote(action){
+  const note = {
+    title : action.payload.title || '(no title)',
+      text : action.payload.note || '',
+    author : {
+    name: action.payload.name || 'Anonymous',
+      email: action.payload.email || '',
+    }
+  };
+  
   try{
-    yield call(API.saveNote, action.payload);
+    yield call(API.saveNote, note);
     yield put(push('/'));
   }
   catch (err){
@@ -33,7 +42,7 @@ export function* createNote(action){
   }
 }
 
-export function* noteSaga(){
+export default function* noteSaga(){
   yield [
     takeEvery(actionTypes.LOAD_NOTE, loadNote),
     takeEvery(actionTypes.CREATE_NOTE, createNote),

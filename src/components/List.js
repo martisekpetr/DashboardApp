@@ -12,7 +12,7 @@ class List extends React.Component {
     dashboard: PropTypes.shape({
       id: PropTypes.number.isRequired,
     }),
-
+    loadDashboard: PropTypes.func.isRequired,
   };
 
   componentWillMount(){
@@ -27,12 +27,12 @@ class List extends React.Component {
         {this.props.dashboard.notes.map(note =>
             <p key={note.id}>
               <Link to={`/note/${note.id}`} key={note.id}>
-                <strong>{note.title} ({note.author}):</strong> {getPreview(note.text, 5)}
+                <strong>{note.title} ({note.author.name}):</strong> {getPreview(note.text, 5)}
               </Link>
             </p>
         )}
         <p key="create_note">
-          <Link to={`/create/`} key="create_note">
+          <Link to="/create/">
             Create note
           </Link>
         </p>

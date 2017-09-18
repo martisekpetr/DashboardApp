@@ -23,18 +23,22 @@ class Note extends React.Component {
   }
 
   render() {
-    return !this.props.note ? <div>Loading...</div> : (
-      <div>
-        <Link to="/">Back to list</Link>
-        <h3>{this.props.note.title}</h3>
-        <p>
-          {this.props.note.text}
-          <br />
-          ({this.props.note.author.name}, {this.props.note.author.email})
-        </p>
-      </div>
-
-    )
+    if (!this.props.note) {
+      return <div>Loading...</div>;
+    } else {
+      const {title, text, author} = this.props.note;
+      return (
+        <div>
+          <Link to="/">Back to list</Link>
+          <h3>{title}</h3>
+          <p>
+            {text}
+            <br/>
+            ({author.name}, {author.email})
+          </p>
+        </div>
+      )
+    }
   }
 }
 

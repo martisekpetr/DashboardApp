@@ -20,7 +20,7 @@ export const getDashboard = createSelector(
       ...dashboards[id],
       notes: dashboards[id].notes.map(noteId => ({
         ...notes[noteId],
-        author: users[notes[noteId].author].name,
+        author: users[notes[noteId].author],
       }))
     }
 );
